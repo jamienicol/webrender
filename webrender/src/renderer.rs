@@ -79,6 +79,7 @@ const GPU_TAG_BLUR: GpuProfileTag = GpuProfileTag { label: "Blur", color: debug_
 pub enum BlendMode {
     None,
     Alpha,
+    PremultipliedAlpha,
 
     Multiply,
     Max,
@@ -1507,6 +1508,10 @@ impl Renderer {
                     BlendMode::Alpha => {
                         self.device.set_blend(true);
                         self.device.set_blend_mode_alpha();
+                    }
+                    BlendMode::PremultipliedAlpha => {
+                        self.device.set_blend(true);
+                        self.device.set_blend_mode_premultiplied_alpha();
                     }
                     BlendMode::Subpixel(color) => {
                         self.device.set_blend(true);
