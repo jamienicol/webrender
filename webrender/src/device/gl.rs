@@ -952,7 +952,19 @@ impl Device {
                 },
             )
         };
+
+        let internal = match bgra_format_internal {
+            gl::BGRA8_EXT => "BGRA8_EXT",
+            gl::BGRA_EXT => "BGRA_EXT",
+            gl::RGBA8 => "RGBA8",
+            _ => "Unknown"
         };
+        let external = match bgra_format_external {
+            gl::BGRA_EXT => "BGRA",
+            _ => "Unknown"
+        };
+        println!("internal: {}, external: {}, tex_storage_usage: {:?}",
+                 internal, external, texture_storage_usage);
 
         Device {
             gl,
